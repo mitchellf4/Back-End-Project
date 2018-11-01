@@ -1,0 +1,79 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+    <h1>Add A Location</h1>
+    <form method="POST" action="/">
+    <table class="table table-striped">
+      <tr>
+    	<th>ID</th>
+    	<th>Description</th>
+    	<th>Datetime</th>
+    	<th>Longitude</th>
+    	<th>Latitude</th>
+    	<th>Elevation</th>
+      </tr>
+        <td><input type="text" name="identification"></td>
+        <td><input type="text" name="description"></td>       
+        <td><input type="text" name="datetime"></td>       
+        <td><input type="text" name="longitude"></td>       
+        <td><input type="text" name="latitude"></td>      
+        <td><input type="text" name="elevation"></td>
+        <td><input type="submit" value="Add"></td>
+    </table>
+    </form>
+
+    {% for book in books %}
+  
+   <div class="alert alert-primary" role="alert" align="center" style="padding-left:10%">
+    <table style="float:left;">
+  	<tr>
+  		<th>ID</th>
+  		<th>Description</th>
+  		<th>Datetime</th>
+  		<th>Longitude</th>
+  		<th>Latitude</th>
+  		<th>Elevation</th>
+  	</tr>
+  	<tr>
+  		<td align="center">{{book.identification}}</td>
+  		<td align="center">{{book.description}}</td>
+  		<td align="center">{{book.datetime}}</td>
+  		<td align="center">{{book.longitude}}</td>
+  		<td align="center">{{book.latitude}}</td>
+  		<td align="center">{{book.elevation}}</td>
+  </tr>
+  </table>
+</div>
+  
+
+  <div class="alert alert-primary" role="alert" style="padding-left:10%">
+   <form method="POST" action="./update" style="float:left;">  
+    <table>
+    <input type="hidden" value="{{book.identification}}" name="oldtitle">
+    <input type="text" value="{{book.identification}}" name="newtitle">
+    <input type="hidden" value="{{book.description}}" name="oldtitle2">
+    <input type="text" value="{{book.description}}" name="newtitle2">
+    <input type="hidden" value="{{book.datetime}}" name="oldtitle3">
+    <input type="text" value="{{book.datetime}}" name="newtitle3">
+    <input type="hidden" value="{{book.longitude}}" name="oldtitle4">
+    <input type="text" value="{{book.longitude}}" name="newtitle4">
+    <input type="hidden" value="{{book.latitude}}" name="oldtitle5">
+    <input type="text" value="{{book.latitude}}" name="newtitle5">
+    <input type="hidden" value="{{book.elevation}}" name="oldtitle6">
+    <input type="text" value="{{book.elevation}}" name="newtitle6">
+    <input type="submit" value="Update">
+   </form>
+ <form method="POST" action="./delete">
+  <input type="hidden" value="{{book.identification}}" name="identification">
+  <input type="hidden" value="{{book.description}}" name="description">
+  <input type="hidden" value="{{book.datetime}}" name="datetime">
+  <input type="hidden" value="{{book.longitude}}" name="longitude">
+  <input type="hidden" value="{{book.latitude}}" name="latitude">
+  <input type="hidden" value="{{book.elevation}}" name="elevation">
+  <input type="submit" value="Delete">
+</table>
+ </form>
+</div>
+
+{% endfor %}
+{% endblock %}
